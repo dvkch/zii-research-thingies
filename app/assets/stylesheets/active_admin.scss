@@ -1,0 +1,8 @@
+/* ...
+ *= require_self
+ *= require_tree ./active_admin
+ */
+
+@import 'activeadmin_addons/all';
+@import "active_admin/mixins";
+@import "arctic_admin/base";

@@ -1,0 +1,6 @@
+// Always deployed groups
+
+.header #tabs li.has_nested.open.no-arrow > a:nth-child(1)::after,
+.header #tabs li.has_nested.current.no-arrow > a:nth-child(1)::after {
+  content: '';
+}

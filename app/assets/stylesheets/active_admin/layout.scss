@@ -1,0 +1,118 @@
+@import "variables";
+
+// Header
+$header-height: 80px;
+.header #tabs {
+  top: $header-height;
+}
+
+.header .site_title {
+  height: $header-height;
+  line-height: $header-height/2;
+}
+
+.header #utility_nav {
+  height: $header-height;
+}
+
+body.active_admin.logged_in {
+  padding-top: $header-height;
+}
+
+body .header #utility_nav {
+  z-index: 10; // prevent JSON input gutter to appear over the navbar
+}
+
+// Panels
+.panel {
+  margin-bottom: 2em;
+}
+
+.panel:last-child {
+  margin-bottom: unset;
+}
+
+// Show, deployable panels
+details.panel:not([open]) {
+  margin-bottom: 0;
+}
+
+form details.panel[open] summary {
+  border-bottom: 1px solid #eee;
+}
+
+details.panel {
+  // margins
+  > :not(summary) {
+    margin-left: 1em;
+  }
+
+  // move summary arrow
+  summary {
+    list-style: none;
+    margin-bottom: 1em;
+
+    &::marker, &::-webkit-details-marker {
+      display: none;
+    }
+
+    h3 {
+      display: inline;
+    }
+
+  }
+  summary::after {
+    content: ' ►';
+  }
+  &[open] summary:after {
+    content: " ▼";
+  }
+
+  // make smaller panels
+  .panel h3 {
+    font-size: 1em;
+  }
+}
+
+// Admin Show: First column width
+body.show .attributes_table table {
+  table-layout: fixed;
+}
+
+body.show .attributes_table table tbody tr th {
+  width: 30%;
+}
+
+// Scopes
+
+.scopes ul.table_tools_segmented_control {
+  display: inline-flex;
+  margin-right: 0.25em;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+body.index .scopes ul.table_tools_segmented_control .scope a {
+  margin-right: 0;
+}
+
+// Tabs with flags
+[aria-controls^="%F0%9F%87"] {
+  font-size: 1.5em;
+}
+
+
+// Generic
+
+.width-10 { width: 10%; }
+.width-20 { width: 20%; }
+.width-30 { width: 30%; }
+.width-40 { width: 40%; }
+.width-50 { width: 50%; }
+.width-60 { width: 60%; }
+.width-70 { width: 70%; }
+.width-80 { width: 80%; }
+.width-90 { width: 90%; }
+.width-100 { width: 100%; }

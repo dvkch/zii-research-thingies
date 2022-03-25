@@ -1,0 +1,44 @@
+fr:
+  attributes:
+    count: "Total"
+    created_at: "Créé(e) le"
+    current_sign_in_at: "Connexion actuelle le"
+    current_sign_in_ip: "IP de la connexion actuelle"
+    email: "Email"
+    encrypted_password: "Mot de passe chiffré"
+    first_name: "Prénom"
+    full_name: "Nom complet"
+    id: "ID"
+    last_name: "Nom"
+    last_sign_in_at: "Dernière connexion le"
+    last_sign_in_ip: "IP de la dernière connexion"
+    name: "Nom"
+    named_preset: "Préréglage"
+    password: "Mot de passe"
+    password_confirmation: "Confirmation de mot de passe"
+    permissions: "Permissions"
+    remember_created_at: "Connexion persistée le"
+    reset_password_sent_at: "Réinitialisation de mot de passe le"
+    reset_password_token: "Token de réinitialisation de mot de passe"
+    sign_in_count: "Nombre de connexions"
+    updated_at: "Mise à jour le"
+  activerecord:
+    models:
+      admin_user:
+        one: "Administrateur"
+        other: "Administrateurs"
+    validations:
+      common:
+        prevent_deletion_if_has_children: "Ne peut pas supprimer un(e) %{parent} qui est encore associé(e) à des %{children}"
+      admin_user:
+        invalid_permissions: "Permissions invalides"
+    enums:
+      common:
+        locales:
+          fr: "🇫🇷"
+          en: "🇬🇧"
+          es: "🇪🇸"
+          de: "🇩🇪"
+      admin_user:
+        permissions:
+          admin: "Accès admin complet"

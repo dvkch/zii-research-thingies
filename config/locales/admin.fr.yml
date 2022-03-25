@@ -1,0 +1,35 @@
+fr:
+  date:
+    formats:
+      admin: "%Y-%m-%d"
+  time:
+    formats:
+      admin: "%Y-%m-%d %H:%M:%S"
+  admin:
+    labels:
+      metadata: "Métadonnées"
+    groups:
+      advanced: "Avancé"
+    pages:
+      home: "Accueil"
+  active_admin:
+    move: "Déplacer"
+    filters:
+      predicates:
+        datetime:
+          from: "Depuis le"
+          to: "Jusqu'au"
+    scopes:
+      all: 'Tous'
+  # from gems/responders/locales
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} a été créé(e) avec succès."
+        # alert: "%{resource_name} could not be created."
+      update:
+        notice: "%{resource_name} a été mis à jour avec succès."
+        # alert: "%{resource_name} could not be updated."
+      destroy:
+        notice: "%{resource_name} a été supprimé(e) avec succès."
+        alert: "%{resource_name} n'a pas pu être supprimé(e). %{resource_errors}"

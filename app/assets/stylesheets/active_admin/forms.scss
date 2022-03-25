@@ -1,0 +1,291 @@
+@import "variables";
+
+// Disabled input
+input[disabled="disabled"],
+input[disabled],
+select[disabled="disabled"],
+select[disabled] {
+  background-color: #F4F4F4;
+  border: 0 solid #F4F4F4 !important;
+}
+
+// Manual forms
+form.manual_form {
+  input {
+    width: unset;
+    display: inline-block;
+    margin-right: 1em;
+  }
+  input[type="submit"] {
+    line-height: 2em;
+  }
+}
+
+// Typed attributes
+span.attribute {
+  &-color {
+    padding: 0 1em;
+    margin-right: 0.5em;
+    border: 1px black solid;
+  }
+
+  &-i18n {
+    margin-right: 0.3em;
+    font-size: large;
+    vertical-align: middle;
+  }
+
+  &-translation {
+    display: block;
+  }
+
+  &-preview {
+    margin-top: 4px;
+    display: block;
+    color: darkgrey;
+  }
+}
+
+// File attachments
+.checkbox-admin-file-destroy {
+  @media (min-width: 575px) {
+    margin-left: 25%;
+  }
+  .field_with_errors {
+    display: inline-block;
+  }
+}
+
+fieldset.has_many_fields fieldset.has_many_fields .input.image input[type="file"] {
+  @media (min-width: 575px) {
+    margin-left: 25%;
+  }
+}
+
+// Filters
+#sidebar input[type="text"].date-time-picker-input {
+  width: 100%;
+}
+
+// Fields
+.input-fields--array input[type="text"],
+.input-fields--array input[type="number"],
+.input-fields--array select,
+body.logged_in.edit .input .input-fields--array .select2-container {
+  width: 100% !important;
+}
+
+.input table.input-fields--array thead tr th label.label {
+  float: none !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+
+// Export fields
+fieldset.inputs.has_many_table .has_many_container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  a.has_many_add {
+    text-align: center;
+  }
+
+  fieldset.has_many_fields {
+    display: flex;
+    flex-direction: row;
+
+    ol {
+      display: flex;
+      flex: 1;
+      padding: 0;
+      margin-bottom: 10px;
+
+      li:not(.input) {
+        display: flex;
+        align-self: center;
+        margin: 0;
+        padding: 10px;
+
+        .has_many_remove {
+          margin: 0;
+        }
+      }
+
+      li.input {
+        display: flex;
+        flex: 1;
+        padding: 10px;
+        margin-bottom: 0;
+
+        &.hidden {
+          flex: 0;
+        }
+
+        &:not(.boolean) label {
+          display: none;
+        }
+
+        &.boolean {
+          flex: 0;
+        }
+
+        input:not([type='hidden']):not([type='checkbox']), select, .select2, textarea {
+          @media (min-width: 575px) {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Forms in pages
+form.admin-input {
+  .label {
+    width: 25%;
+    padding-right: 1em;
+    text-align: right;
+    padding-bottom: 0;
+    height: 25px;
+  }
+
+  fieldset.choices .label {
+    float: left;
+  }
+
+  .input.stringish input {
+    width: 300px;
+    display: inline-block;
+  }
+
+  input.date-time-picker-input {
+    width: 300px;
+    display: inline-block;
+  }
+
+  input[type=number] {
+    width: 300px;
+    display: inline-block;
+  }
+
+  .input.boolean label {
+    margin-left: 25%;
+  }
+
+  .choices-group {
+    display: inline-block;
+  }
+
+  .input .select2 {
+    max-width: 300px;
+  }
+
+  .actions {
+    margin-left: 25%;
+  }
+}
+
+// Semantic errors in form
+.active_admin {
+  form {
+    .errors {
+      color: $alert-error-color;
+    }
+  }
+}
+
+.inline-hints {
+  // display: inline; // might be useful, but breaks the layout in /admin/kpi
+}
+
+// Slider input
+body form .input.slider {
+  input[type='range'] {
+    width: 40%;
+    display: inline-block;
+  }
+  output {
+    width: 10%;
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: 14px;
+  }
+}
+
+// Tabs in forms
+body.active_admin .tabs {
+  margin-bottom: 20px;
+
+  .tab-content fieldset.inputs {
+    margin-bottom: 0;
+  }
+}
+
+// Sidebar checkboxes
+#sidebar .sidebar_section .input input[type="checkbox"] {
+  height: 15px;
+  margin-bottom: 0;
+}
+
+// Nested forms
+.has_many_container {
+  width: 100%;
+  margin: auto;
+
+  .has_many_fields.inputs {
+    margin-bottom: 0 !important;
+
+    ol {
+      margin-bottom: 30px;
+      padding: 15px 10px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #e2e2e2;
+      border-radius: 5px;
+      padding-bottom: 0;
+      position: relative;
+
+      .input {
+        input:not([type='hidden']):not([type='checkbox']), select, .select2, textarea {
+          width: 100% !important;
+          @media (min-width: 575px) {
+            width: 70% !important;
+          }
+        }
+      }
+
+      .boolean.input.has_many_delete {
+        margin-left: 0;
+      }
+
+      .has_many_remove {
+        margin-bottom: 1em;
+      }
+
+      small {
+        font-size: 11px;
+        padding-bottom: 5px;
+        display: block;
+      }
+
+      li.handle {
+        cursor: grab;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: smaller;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.has_many_fields .has_many_fields.inputs {
+  ol {
+    background: #e5e5e5;
+    border-bottom: 1px solid #e2e2e2;
+    border-radius: 5px;
+    padding-bottom: 0;
+    position: relative;
+  }
+}
+

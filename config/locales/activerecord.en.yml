@@ -1,0 +1,44 @@
+en:
+  attributes:
+    count: "Count"
+    created_at: "Created at"
+    current_sign_in_at: "Current sign in at"
+    current_sign_in_ip: "Current sign in IP"
+    email: "Email"
+    encrypted_password: "Encrypted password"
+    first_name: "First name"
+    full_name: "Full name"
+    id: "ID"
+    last_name: "Name"
+    last_sign_in_at: "Last sign in at"
+    last_sign_in_ip: "Last sign in IP"
+    name: "Name"
+    named_preset: "Preset"
+    password: "Password"
+    password_confirmation: "Password confirmation"
+    permissions: "Permissions"
+    remember_created_at: "Remember created at"
+    reset_password_sent_at: "Reset password sent at"
+    reset_password_token: "Reset password token"
+    sign_in_count: "Sign in count"
+    updated_at: "Updated at"
+  activerecord:
+    models:
+      admin_user:
+        one: "Admin user"
+        other: "Admin users"
+    validations:
+      common:
+        prevent_deletion_if_has_children: "Can't delete a %{parent} that still has associated %{children}"
+      admin_user:
+        invalid_permissions: "Invalid permissions"
+    enums:
+      common:
+        locales:
+          fr: "🇫🇷"
+          en: "🇬🇧"
+          es: "🇪🇸"
+          de: "🇩🇪"
+      admin_user:
+        permissions:
+          admin: "Full admin access"

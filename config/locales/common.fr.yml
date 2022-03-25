@@ -1,0 +1,13 @@
+fr:
+  errors:
+    messages:
+      standard: "Une erreur est survenue, merci de réessayer plus tard."
+      invalid_permissions: "Permissions invalides : %{permissions}"
+  common:
+    actions:
+      create: "Créer"
+      delete: "Supprimer"
+      view: "Voir"
+      edit: "Editer"
+      remove: "Enlever"
+      select: "Selectionner"

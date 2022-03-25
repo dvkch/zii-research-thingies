@@ -1,3 +1,8 @@
+*.DS_Store
+.idea/*
+
+# FROM https://github.com/github/gitignore/blob/master/Rails.gitignore
+
 *.rbc
 capybara-*.html
 .rspec
@@ -17,7 +22,12 @@ pickle-email-*.html
 !/log/.keep
 !/tmp/.keep
 
-# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore master key for decrypting credentials and more.
 config/initializers/secret_token.rb
 config/master.key
 
@@ -25,7 +35,6 @@ config/master.key
 # config/secrets.yml
 
 # dotenv
-# TODO Comment out this rule if environment variables can be committed
 .env
 
 ## Environment normalization:
@@ -65,3 +74,4 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+

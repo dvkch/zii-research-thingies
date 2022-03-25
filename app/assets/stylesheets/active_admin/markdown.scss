@@ -1,0 +1,23 @@
+.panel.markdown {
+  h1, h2, h3 {
+    margin-top: 1.5em;
+  }
+
+  code {
+    background-color: #F8F8F8;
+    color: black;
+    display: inline-block;
+    border-radius: 2px;
+    border: #DDDDDD 1px solid;
+  }
+
+  pre code {
+    display: block;
+  }
+
+  ol, ul {
+    margin: revert;
+    padding: revert;
+    list-style: revert;
+  }
+}

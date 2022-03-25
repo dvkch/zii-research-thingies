@@ -1,0 +1,35 @@
+@import "variables";
+@import "arctic_admin/base";
+
+// IndexTableFor action buttons
+.table_actions {
+  .member_link {
+    @include primary-button($primary-color, white);
+    padding: 2px 9px;
+    margin-right: 4px;
+  }
+}
+
+// Status tags
+.status_tag {
+  &.yes { background: $status-yes-color }
+  &.no  { background: $status-no-color }
+
+  &.pending { background: orange }
+  &.running { background: $primary-color }
+  &.done { background: $status-yes-color }
+}
+
+// Empty data in #show
+.attributes_table td span.empty {
+  opacity: 30%;
+  font-style: italic;
+}
+
+// FrontendData file values
+td.col.frontend-data-files li {
+  margin-bottom: 1em;
+  span {
+    display: block;
+  }
+}

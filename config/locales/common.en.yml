@@ -1,0 +1,13 @@
+en:
+  errors:
+    messages:
+      standard: "An error occurred. Please try again later."
+      invalid_permissions: "Invalid permissions: %{permissions}"
+  common:
+    actions:
+      create: "New"
+      delete: "Delete"
+      view: "View"
+      edit: "Edit"
+      remove: "Remove"
+      select: "Select"
