@@ -6,3 +6,11 @@
 @import 'activeadmin_addons/all';
 @import "active_admin/mixins";
 @import "arctic_admin/base";
+@import "variables";
+
+.flash.flash_notice {
+  background-color: $alert-success-color;
+}
+.flash.flash_error {
+  background-color: $alert-error-color;
+}
