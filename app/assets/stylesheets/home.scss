@@ -1,0 +1,38 @@
+@import "variables";
+
+body.home {
+    background-color: white;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100vh;
+    text-align: center;
+}
+
+body.home #content {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1em;
+}
+
+body.home #content img.logo {
+    max-width: 400px;
+}
+
+body.home #content p.app_name {
+    color: black;
+    display: block;
+    font-size: xx-large;
+    font-style: italic;
+}
+
+body.home #content a {
+    color: white;
+    padding: 0.4em 0.8em;
+    border-radius: 2em;
+    background: $primary-color;
+}
+
+body.home p.notice, body.home p.alert {
+    display: none;
+}
