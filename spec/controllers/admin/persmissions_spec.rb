@@ -78,6 +78,8 @@ feature 'admin is scoped using AdminUser permissions' do
       expected = [
         I18n.t('admin.pages.home'),
 
+        I18n.t('activerecord.models.twitter_search.other'),
+
         I18n.t('activerecord.models.admin_user.other'),
       ]
       permission_allows_menus(*expected)

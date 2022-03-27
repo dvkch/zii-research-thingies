@@ -10,6 +10,7 @@ fr:
       metadata: "Métadonnées"
     groups:
       advanced: "Avancé"
+      twitter: "Twitter"
     pages:
       home: "Accueil"
   active_admin:

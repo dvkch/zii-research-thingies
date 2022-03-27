@@ -9,6 +9,7 @@ en:
     first_name: "First name"
     full_name: "Full name"
     id: "ID"
+    include_replies: "Include replies"
     last_name: "Name"
     last_sign_in_at: "Last sign in at"
     last_sign_in_ip: "Last sign in IP"
@@ -17,16 +18,26 @@ en:
     password: "Password"
     password_confirmation: "Password confirmation"
     permissions: "Permissions"
+    twitter_search: "Search"
+    twitter_search_sources: "Sources"
     remember_created_at: "Remember created at"
     reset_password_sent_at: "Reset password sent at"
     reset_password_token: "Reset password token"
     sign_in_count: "Sign in count"
     updated_at: "Updated at"
+    kind: "Kind"
+    query: "Query"
   activerecord:
     models:
       admin_user:
         one: "Admin user"
         other: "Admin users"
+      twitter_search:
+        one: "Search"
+        other: "Searches"
+      twitter_search_source:
+        one: "Source"
+        other: "Sources"
     validations:
       common:
         prevent_deletion_if_has_children: "Can't delete a %{parent} that still has associated %{children}"
@@ -42,3 +53,8 @@ en:
       admin_user:
         permissions:
           admin: "Full admin access"
+      twitter_search_source:
+        kinds:
+          hashtag: 'Hashtag'
+          user: 'User'
+

@@ -10,6 +10,7 @@ en:
       metadata: "Metadata"
     groups:
       advanced: "Advanced"
+      twitter: "Twitter"
     pages:
       home: "Home"
   active_admin:

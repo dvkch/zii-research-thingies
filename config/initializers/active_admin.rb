@@ -258,10 +258,8 @@ ActiveAdmin.setup do |config|
   #   end
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
-      menu.add id: 'info', label: proc { I18n.t('admin.groups.dashboard') }, priority: 40
-      menu.add id: 'catalogue', label: proc { I18n.t('admin.groups.catalogue') }, priority: 50
-      menu.add id: 'settings', label: proc { I18n.t('admin.groups.settings') }, priority: 60
-      menu.add id: 'advanced', label: proc { I18n.t('admin.groups.advanced') }, priority: 70
+      menu.add id: 'twitter', label: proc { I18n.t('admin.groups.twitter') }, priority: 10
+      menu.add id: 'advanced', label: proc { I18n.t('admin.groups.advanced') }, priority: 90
     end
   end
 
