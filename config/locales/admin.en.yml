@@ -8,6 +8,7 @@ en:
   admin:
     labels:
       metadata: "Metadata"
+      stats: "Stats"
     groups:
       advanced: "Advanced"
       twitter: "Twitter"

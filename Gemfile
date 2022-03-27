@@ -23,6 +23,8 @@ gem 'activeadmin', '~> 2.7'
 gem 'activeadmin_addons', '~> 1.7'
 gem 'arctic_admin', '~> 3.2'
 
+gem 'tweetkit', '~> 0.2'
+
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
