@@ -3,7 +3,7 @@
 ActiveAdmin.register TwitterSearch do
   menu parent: 'twitter', priority: 1
 
-  permit_params :name, twitter_search_sources_attributes: [:id, :_destroy, :query, :include_replies]
+  permit_params :name, twitter_search_sources_attributes: [:id, :_destroy, :query]
 
   filter :name
 
@@ -30,7 +30,6 @@ ActiveAdmin.register TwitterSearch do
     panel I18n.t('attributes.twitter_search_sources') do
       index_table_for(resource.twitter_search_sources, class: 'index_table') do
         column :query
-        column :include_replies
       end
     end
 
@@ -58,7 +57,6 @@ ActiveAdmin.register TwitterSearch do
       ) do |param|
         param.semantic_errors
         param.input :query, placeholder: I18n.t('attributes.query'), hint: '<a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list" target="_blank">Building a query</a>'.html_safe
-        param.input :include_replies
       end
     end
 

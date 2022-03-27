@@ -17,7 +17,6 @@ class TwitterSearchSource < ApplicationRecord
       twitter_tweets.delete_all
 
       TwitterService.new.load_tweets(self)
-      TwitterService.new.load_replies(self)
     end
   end
 

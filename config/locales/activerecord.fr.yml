@@ -11,7 +11,6 @@ fr:
     first_name: "Prénom"
     full_name: "Nom complet"
     id: "ID"
-    include_replies: "Inclure les réponses"
     kind: "Type"
     last_name: "Nom"
     last_sign_in_at: "Dernière connexion le"

@@ -11,7 +11,6 @@ en:
     first_name: "First name"
     full_name: "Full name"
     id: "ID"
-    include_replies: "Include replies"
     kind: "Kind"
     last_name: "Name"
     last_sign_in_at: "Last sign in at"
