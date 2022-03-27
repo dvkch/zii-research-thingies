@@ -68,8 +68,4 @@ en:
       admin_user:
         permissions:
           admin: "Full admin access"
-      twitter_search_source:
-        kinds:
-          hashtag: 'Hashtag'
-          user: 'User'
 

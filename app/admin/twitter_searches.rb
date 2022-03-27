@@ -3,7 +3,7 @@
 ActiveAdmin.register TwitterSearch do
   menu parent: 'twitter', priority: 1
 
-  permit_params :name, twitter_search_sources_attributes: [:id, :_destroy, :kind, :query, :include_replies]
+  permit_params :name, twitter_search_sources_attributes: [:id, :_destroy, :query, :include_replies]
 
   filter :name
 
@@ -13,9 +13,7 @@ ActiveAdmin.register TwitterSearch do
     selectable_column
     id_column
     column :name
-    column :twitter_search_sources do |resource|
-      resource.twitter_search_sources.map { |q| "#{q.kind}: #{q.query}" }.join('<br/>').html_safe
-    end
+    many_column :twitter_search_sources
     column :twitter_tweets do |resource|
       table_actions do
         item I18n.t('common.actions.view'), admin_twitter_search_twitter_tweets_path(resource), class: 'member_link'
@@ -31,7 +29,6 @@ ActiveAdmin.register TwitterSearch do
 
     panel I18n.t('attributes.twitter_search_sources') do
       index_table_for(resource.twitter_search_sources, class: 'index_table') do
-        enum_column :kind
         column :query
       end
     end
@@ -59,7 +56,6 @@ ActiveAdmin.register TwitterSearch do
         allow_destroy: ->(_) { true }
       ) do |param|
         param.semantic_errors
-        param.input :kind, as: :select, placeholder: I18n.t('attributes.kind'), selected: param.object.kind || 'hashtag'
         param.input :query, placeholder: I18n.t('attributes.query')
         param.input :include_replies
       end

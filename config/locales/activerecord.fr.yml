@@ -68,7 +68,3 @@ fr:
       admin_user:
         permissions:
           admin: "Accès admin complet"
-      twitter_search_source:
-        kinds:
-          hashtag: 'Hashtag'
-          user: 'Utilisateur'
