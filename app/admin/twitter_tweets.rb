@@ -4,16 +4,29 @@ ActiveAdmin.register TwitterTweet do
   menu parent: 'twitter', priority: 2
   belongs_to :twitter_search
 
+  controller do
+    defaults finder: :find_by_twitter_id
+
+    def show
+      if resource.nil?
+        resource = TwitterTweet.find(params[:id])
+        return redirect_to admin_twitter_search_twitter_tweet_path(resource.twitter_search_id, resource.twitter_id)
+      end
+      super
+    end
+  end
+
   actions :index, :show
+
+  config.sort_order = "date_desc"
 
   filter :username
   filter :content
   filter :twitter_id
 
-  includes :twitter_search_source
+  includes :twitter_search, :twitter_search_source
 
   index do
-    selectable_column
     id_column
     column :username
     column :content
@@ -21,7 +34,7 @@ ActiveAdmin.register TwitterTweet do
     column :twitter_search_source
     column :url do |resource|
       table_actions do
-        item I18n.t('common.actions.view'), resource.url, class: 'member_link', target: '_blank'
+        item '>', resource.url, class: 'member_link', target: '_blank'
       end
     end
     actions

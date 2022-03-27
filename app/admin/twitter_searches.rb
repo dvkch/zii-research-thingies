@@ -30,6 +30,7 @@ ActiveAdmin.register TwitterSearch do
     panel I18n.t('attributes.twitter_search_sources') do
       index_table_for(resource.twitter_search_sources, class: 'index_table') do
         column :query
+        column :include_replies
       end
     end
 
@@ -48,7 +49,7 @@ ActiveAdmin.register TwitterSearch do
       f.input :name
     end
 
-    f.inputs class: 'inputs has_many_table' do
+    f.inputs class: 'inputs has_many' do
       f.has_many(
         :twitter_search_sources,
         new_record: [I18n.t('common.actions.create'), I18n.t('activerecord.models.twitter_search_source.one')].join(' '),
@@ -56,7 +57,7 @@ ActiveAdmin.register TwitterSearch do
         allow_destroy: ->(_) { true }
       ) do |param|
         param.semantic_errors
-        param.input :query, placeholder: I18n.t('attributes.query')
+        param.input :query, placeholder: I18n.t('attributes.query'), hint: '<a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list" target="_blank">Building a query</a>'.html_safe
         param.input :include_replies
       end
     end

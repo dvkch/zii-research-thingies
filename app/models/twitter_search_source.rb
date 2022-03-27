@@ -13,9 +13,12 @@ class TwitterSearchSource < ApplicationRecord
 
   # https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query
   def refresh_tweets
-    result = ::TwitterService.new.search(query)
-    self.twitter_tweets = result
-    save!
+    TwitterTweet.transaction do
+      twitter_tweets.delete_all
+
+      TwitterService.new.load_tweets(self)
+      TwitterService.new.load_replies(self)
+    end
   end
 
   validates :query, presence: true
