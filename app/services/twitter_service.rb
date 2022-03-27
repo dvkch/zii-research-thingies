@@ -47,10 +47,10 @@ class TwitterService
       raise ZiiResearchThingies::Error, messages.join(', ')
     end
 
-    puts json
-
     users = (json.dig('includes', 'users') || []).map { |u| [u['id'], u['username']] }.to_h
-    json['data']&.each do |tweet|
+    tweets = json['data'] || []
+    puts "#{query}: #{tweets.count} elements"
+    tweets.each do |tweet|
       TwitterTweet.create(
         twitter_search_source: source,
         twitter_id: tweet['id'],
@@ -63,6 +63,8 @@ class TwitterService
 
     if (next_token = json.dig('meta', 'next_token'))
       load_and_save_tweets(source, query, next_token: next_token)
+    else
+      puts "#{query}: Done"
     end
   end
 end
