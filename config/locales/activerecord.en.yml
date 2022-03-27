@@ -1,32 +1,43 @@
 en:
   attributes:
+    content: "Content"
     count: "Count"
     created_at: "Created at"
     current_sign_in_at: "Current sign in at"
     current_sign_in_ip: "Current sign in IP"
+    date: "Date"
     email: "Email"
     encrypted_password: "Encrypted password"
     first_name: "First name"
     full_name: "Full name"
     id: "ID"
     include_replies: "Include replies"
+    kind: "Kind"
     last_name: "Name"
     last_sign_in_at: "Last sign in at"
     last_sign_in_ip: "Last sign in IP"
+    like_count: "Likes"
     name: "Name"
     named_preset: "Preset"
+    parent: "Parent"
     password: "Password"
     password_confirmation: "Password confirmation"
     permissions: "Permissions"
-    twitter_search: "Search"
-    twitter_search_sources: "Sources"
+    query: "Query"
+    quote_count: "Quotes"
     remember_created_at: "Remember created at"
+    reply_count: "Replies"
     reset_password_sent_at: "Reset password sent at"
     reset_password_token: "Reset password token"
+    retweet_count: "Retweets"
     sign_in_count: "Sign in count"
+    twitter_id: "Twitter ID"
+    twitter_search: "Search"
+    twitter_search_source: "Source"
+    twitter_search_sources: "Sources"
+    twitter_tweets: "Tweets"
     updated_at: "Updated at"
-    kind: "Kind"
-    query: "Query"
+    username: "Username"
   activerecord:
     models:
       admin_user:
@@ -38,9 +49,13 @@ en:
       twitter_search_source:
         one: "Source"
         other: "Sources"
+      twitter_tweet:
+        one: "Tweet"
+        other: "Tweets"
     validations:
       common:
         prevent_deletion_if_has_children: "Can't delete a %{parent} that still has associated %{children}"
+        invalid_url: "Invalid URL"
       admin_user:
         invalid_permissions: "Invalid permissions"
     enums:

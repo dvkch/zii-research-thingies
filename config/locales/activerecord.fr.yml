@@ -1,32 +1,43 @@
 fr:
   attributes:
+    content: "Contenu"
     count: "Total"
     created_at: "Créé(e) le"
     current_sign_in_at: "Connexion actuelle le"
     current_sign_in_ip: "IP de la connexion actuelle"
+    date: "Date"
     email: "Email"
     encrypted_password: "Mot de passe chiffré"
     first_name: "Prénom"
     full_name: "Nom complet"
     id: "ID"
     include_replies: "Inclure les réponses"
+    kind: "Type"
     last_name: "Nom"
     last_sign_in_at: "Dernière connexion le"
     last_sign_in_ip: "IP de la dernière connexion"
+    like_count: "Likes"
     name: "Nom"
     named_preset: "Préréglage"
+    parent: "Parent"
     password: "Mot de passe"
     password_confirmation: "Confirmation de mot de passe"
     permissions: "Permissions"
-    twitter_search: "Recherche"
-    twitter_search_sources: "Sources"
+    query: "Recherche"
+    quote_count: "Citations"
     remember_created_at: "Connexion persistée le"
+    reply_count: "Réponses"
     reset_password_sent_at: "Réinitialisation de mot de passe le"
     reset_password_token: "Token de réinitialisation de mot de passe"
+    retweet_count: "Retweets"
     sign_in_count: "Nombre de connexions"
+    twitter_id: "ID Twitter"
+    twitter_search: "Recherche"
+    twitter_search_source: "Source"
+    twitter_search_sources: "Sources"
+    twitter_tweets: "Tweets"
     updated_at: "Mise à jour le"
-    kind: "Type"
-    query: "Recherche"
+    username: "Username"
   activerecord:
     models:
       admin_user:
@@ -38,9 +49,13 @@ fr:
       twitter_search_source:
         one: "Source"
         other: "Sources"
+      twitter_tweet:
+        one: "Tweet"
+        other: "Tweets"
     validations:
       common:
         prevent_deletion_if_has_children: "Ne peut pas supprimer un(e) %{parent} qui est encore associé(e) à des %{children}"
+        invalid_url: "URL non valide"
       admin_user:
         invalid_permissions: "Permissions invalides"
     enums:

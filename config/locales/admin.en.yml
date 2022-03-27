@@ -13,6 +13,9 @@ en:
       twitter: "Twitter"
     pages:
       home: "Home"
+    actions:
+      refresh_tweets: "Refresh tweets"
+      see_tweets: "See tweets >"
   active_admin:
     move: "Move"
     filters:

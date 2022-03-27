@@ -13,6 +13,9 @@ fr:
       twitter: "Twitter"
     pages:
       home: "Accueil"
+    actions:
+      refresh_tweets: "Rafraichir les tweets"
+      see_tweets: "Voir les tweets >"
   active_admin:
     move: "Déplacer"
     filters:

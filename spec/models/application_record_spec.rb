@@ -18,7 +18,7 @@ RSpec.describe ApplicationRecord, type: :model do
 
       # rename attributes to the actual attribute name used in models, forms, etc
       attributes = attributes.map do |a|
-        next a if ['public_id', 'user_id'].include?(a)
+        next a if ['public_id', 'user_id', 'twitter_id'].include?(a)
 
         a = a.chomp('_data') if a.end_with?('_data')
         a = a.chomp('_id') if a.end_with?('_id')

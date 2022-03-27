@@ -16,6 +16,11 @@ ActiveAdmin.register TwitterSearch do
     column :twitter_search_sources do |resource|
       resource.twitter_search_sources.map { |q| "#{q.kind}: #{q.query}" }.join('<br/>').html_safe
     end
+    column :twitter_tweets do |resource|
+      table_actions do
+        item I18n.t('common.actions.view'), admin_twitter_search_twitter_tweets_path(resource), class: 'member_link'
+      end
+    end
     actions
   end
 
@@ -29,6 +34,10 @@ ActiveAdmin.register TwitterSearch do
         enum_column :kind
         column :query
       end
+    end
+
+    panel I18n.t('attributes.twitter_tweets') do
+      link_to I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'button'
     end
 
     attributes_table title: I18n.t('admin.labels.metadata') do

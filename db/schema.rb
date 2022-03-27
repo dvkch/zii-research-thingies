@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_26_235833) do
+ActiveRecord::Schema.define(version: 2022_03_27_002801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,23 @@ ActiveRecord::Schema.define(version: 2022_03_26_235833) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "twitter_tweets", force: :cascade do |t|
+    t.bigint "twitter_search_id"
+    t.bigint "twitter_search_source_id"
+    t.datetime "date", null: false
+    t.string "username", null: false
+    t.text "content", null: false
+    t.string "twitter_id", null: false
+    t.integer "retweet_count", default: 0, null: false
+    t.integer "like_count", default: 0, null: false
+    t.integer "reply_count", default: 0, null: false
+    t.integer "quote_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["twitter_search_id"], name: "index_twitter_tweets_on_twitter_search_id"
+    t.index ["twitter_search_source_id"], name: "index_twitter_tweets_on_twitter_search_source_id"
   end
 
 end
