@@ -37,6 +37,7 @@ en:
     twitter_tweets: "Tweets"
     updated_at: "Updated at"
     username: "Username"
+    keywords: "Keywords"
   activerecord:
     models:
       admin_user:

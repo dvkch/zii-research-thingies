@@ -3,6 +3,7 @@
 require 'ext/active_admin_path_fixes'
 require 'ext/active_admin_show_extensions'
 require 'ext/active_admin_tables_extensions'
+require 'ext/active_admin_stats_forms'
 
 ActiveAdmin.setup do |config|
   # == Site Title

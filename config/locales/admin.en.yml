@@ -9,14 +9,35 @@ en:
     labels:
       metadata: "Metadata"
       stats: "Stats"
+      date_granularity:
+        label: "Granularity"
+        daily: "Daily"
+        weekly: "Weekly"
+        monthly: "Monthly"
+        hourly: "Hourly"
+        minute: "Minute by minute"
+      smoothing:
+        none: "None"
+        label: "Smoothing"
+        extent_1: "± 1 point"
+        extent_n: "± %{n} points"
+        hint: "Averages each point with its N previous and N next points"
+      numeric_granularity:
+        all: "All points"
+        n: "%{n} points"
+        label: "Granularity"
+        hint: "Some data have too many points and become unreadable. This will limit the number of points by showing values for ranges instead"
     groups:
       advanced: "Advanced"
       twitter: "Twitter"
     pages:
       home: "Home"
+      stats: "Stats"
     actions:
       refresh_tweets: "Refresh tweets"
       see_tweets: "See tweets >"
+      apply: "Apply"
+      reset: "Reset"
   active_admin:
     move: "Move"
     filters:

@@ -9,14 +9,35 @@ fr:
     labels:
       metadata: "Métadonnées"
       stats: "Stats"
+      date_granularity:
+        label: "Granularité"
+        daily: "Journalier"
+        weekly: "Hebdomadaire"
+        monthly: "Mensuel"
+        hourly: "Horaire"
+        minute: "Minute par minute"
+      smoothing:
+        none: "Aucun"
+        label: "Lissage"
+        extent_1: "± 1 point"
+        extent_n: "± %{n} point"
+        hint: "Moyenne chaque point avec le N points précédents et N points suivants"
+      numeric_granularity:
+        all: "Tous les points"
+        n: "%{n} points"
+        label: "Granularité"
+        hint: "Certaines données ont trop de points et deviennent illisible. Ceci limite le nombre de points en affichant les résultats par intervalles"
     groups:
       advanced: "Avancé"
       twitter: "Twitter"
     pages:
       home: "Accueil"
+      stats: "Stats"
     actions:
       refresh_tweets: "Rafraichir les tweets"
       see_tweets: "Voir les tweets >"
+      apply: "Appliquer"
+      reset: "Réinitialiser"
   active_admin:
     move: "Déplacer"
     filters:

@@ -17,11 +17,14 @@ gem 'turbolinks', '~> 5'
 
 gem 'bcrypt', '~> 3.1'
 gem 'devise', '~> 4.7'
+gem 'pg_search', '~> 2.3'
 gem 'rest-client', '~> 2.1'
 
 gem 'activeadmin', '~> 2.7'
 gem 'activeadmin_addons', '~> 1.7'
 gem 'arctic_admin', '~> 3.2'
+gem 'chartkick', '~> 4.1'
+gem 'groupdate', '~> 6.0'
 
 gem 'tweetkit', '~> 0.2'
 

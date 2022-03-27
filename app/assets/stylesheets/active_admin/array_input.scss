@@ -1,0 +1,61 @@
+@import "variables.scss";
+
+// Array input
+@mixin reset-aa-button {
+  background: none;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  line-height: 1;
+  padding: 0;
+  text-shadow: none;
+  vertical-align: middle;
+  &:not(.disabled) {
+    &:hover,
+    &:active,
+    &:focus {
+      background: none;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+.array-action--add,
+.array-action--remove {
+  @include reset-aa-button;
+  font-size: 1.4rem;
+  color: dimgray;
+}
+.input-group {
+  &--array {
+    margin-bottom: 20px;
+    margin-left: 25%;
+    width: 50%;
+    &__item {
+      margin-bottom: 10px;
+      input {
+        width: calc(100% - 30px) !important;
+        display: inline-block !important;
+      }
+      button {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .input-group--array {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.array {
+  .inline-errors {
+    display: block;
+  }
+}
+.input.array {
+  clear: both;
+}

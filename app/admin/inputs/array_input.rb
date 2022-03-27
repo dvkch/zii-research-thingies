@@ -8,7 +8,7 @@ class ArrayInput
     input_wrapping do
       inputs = []
 
-      @object.send(method).each_with_index do |v, x|
+      (options[:value] || @object.send(method)).each_with_index do |v, x|
         inputs << array_input_html(v, x)
       end
 

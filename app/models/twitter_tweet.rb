@@ -8,6 +8,13 @@ class TwitterTweet < ApplicationRecord
     "https://twitter.com/#{username}/status/#{twitter_id}"
   end
 
+  include PgSearch::Model
+  pg_search_scope :search,
+                  against: :content,
+                  ignoring: :accents,
+                  using: { tsearch: { prefix: true } },
+                  order_within_rank: 'twitter_tweets.date DESC'
+
   validates :date, presence: true
   validates :username, presence: true
   validates :content, presence: true
