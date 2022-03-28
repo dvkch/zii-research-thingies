@@ -23,6 +23,11 @@ ActiveAdmin.register TwitterTweet do
   filter :username
   filter :content
   filter :twitter_id
+  filter :retweet_count
+  filter :like_count
+  filter :reply_count
+  filter :quote_count
+
 
   includes :twitter_search, :twitter_search_source
 
@@ -37,6 +42,10 @@ ActiveAdmin.register TwitterTweet do
         item '>', resource.url, class: 'member_link', target: '_blank'
       end
     end
+    column :retweet_count
+    column :like_count
+    column :reply_count
+    column :quote_count
     actions
   end
 
