@@ -7,15 +7,11 @@ class TwitterService
   end
 
   def load_tweets(source)
-    load_and_save_tweets(source, source.query)
+    internal_load_and_save_tweets(source, source.query)
   end
 
-  def load_replies(source)
-    conversation_ids = TwitterTweet.where(twitter_search_source_id: source.id).pluck(:twitter_id).uniq
-    return if conversation_ids.empty?
-
-    query = conversation_ids.map { |id| "conversation_id:#{id}" }.join(' OR ')
-    load_and_save_tweets(source, query)
+  def count_tweets(source)
+    internal_count_tweets(source.query)
   end
 
   def embed_html(url)
@@ -26,7 +22,26 @@ class TwitterService
 
   protected
 
-  def load_and_save_tweets(source, query, next_token: nil)
+  def internal_count_tweets(query)
+    options = {
+      granularity: 'day'
+    }
+    json = @client.count(
+      query,
+      type: :tweets,
+      **options
+    ).response
+
+    if json['errors']
+      messages = json['errors'].map { |e| e['message'] }
+      raise ZiiResearchThingies::Error, messages.join(', ')
+    end
+
+    count = (json['data'] || []).map { |item| item['tweet_count'] || 0 }
+    count.reduce(0, :+)
+  end
+
+  def internal_load_and_save_tweets(source, query, next_token: nil)
     options = {
       'tweet.fields': 'created_at,public_metrics,conversation_id',
       'user.fields': 'username',
@@ -62,7 +77,7 @@ class TwitterService
     end
 
     if (next_token = json.dig('meta', 'next_token'))
-      load_and_save_tweets(source, query, next_token: next_token)
+      internal_load_and_save_tweets(source, query, next_token: next_token)
     else
       puts "#{query}: Done"
     end

@@ -20,6 +20,10 @@ class TwitterSearchSource < ApplicationRecord
     end
   end
 
+  def count_tweets
+    TwitterService.new.count_tweets(self)
+  end
+
   validates :query, presence: true
 
   protected

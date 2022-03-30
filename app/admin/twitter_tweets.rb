@@ -78,7 +78,18 @@ ActiveAdmin.register TwitterTweet do
     # end
   end
 
-  action_item :full_export, only: :index, priority: 1 do
+  action_item :count_tweets, only: :index, priority: 1 do
+    link_to I18n.t('admin.actions.count_tweets'), count_tweets_admin_twitter_search_twitter_tweets_path(twitter_search), method: :post
+  end
+
+  collection_action :count_tweets, method: :post do
+    search = TwitterSearch.find(params[:twitter_search_id])
+    count = search.count_tweets
+
+    redirect_to admin_twitter_search_twitter_tweets_path(search), notice: I18n.t('admin.notices.twitter.estimated_count', count: count)
+  end
+
+  action_item :refresh_tweets, only: :index, priority: 2 do
     link_to I18n.t('admin.actions.refresh_tweets'), refresh_tweets_admin_twitter_search_twitter_tweets_path(twitter_search), method: :post
   end
 
@@ -86,6 +97,6 @@ ActiveAdmin.register TwitterTweet do
     search = TwitterSearch.find(params[:twitter_search_id])
     search.refresh_tweets
 
-    redirect_to admin_twitter_search_twitter_tweets_path(search), notice: 'Done √'
+    redirect_to admin_twitter_search_twitter_tweets_path(search), notice: I18n.t('admin.notices.twitter.refreshed_tweets')
   end
 end

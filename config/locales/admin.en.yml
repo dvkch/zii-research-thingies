@@ -38,6 +38,11 @@ en:
       see_tweets: "See tweets >"
       apply: "Apply"
       reset: "Reset"
+      count_tweets: "Estimate tweet count"
+    notices:
+      twitter:
+        estimated_count: "Estimated count: %{count} tweets"
+        refreshed_tweets: "Done √"
   active_admin:
     move: "Move"
     filters:

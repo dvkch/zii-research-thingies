@@ -38,6 +38,11 @@ fr:
       see_tweets: "Voir les tweets >"
       apply: "Appliquer"
       reset: "Réinitialiser"
+      count_tweets: "Compter les tweets"
+    notices:
+      twitter:
+        estimated_count: "Nombre estimé : %{count} tweets"
+        refreshed_tweets: "Done √"
   active_admin:
     move: "Déplacer"
     filters:
