@@ -20,9 +20,9 @@
   p {
     vertical-align: middle;
     display: table-cell;
+    width: inherit;
     height: inherit;
     line-height: normal;
     font-size: 17px;
-    max-lines: 2;
   }
 }
