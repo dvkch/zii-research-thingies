@@ -32,7 +32,7 @@ en:
       twitter: "Twitter"
     pages:
       home: "Home"
-      stats: "Stats"
+      twitter_stats: "Stats"
     actions:
       refresh_tweets: "Refresh tweets"
       see_tweets: "See tweets >"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register_page 'KPI' do
-  menu parent: 'twitter', priority: 3, label: proc { I18n.t('admin.pages.stats') }
+ActiveAdmin.register_page 'Twitter Stats' do
+  menu parent: 'twitter', priority: 3, label: proc { I18n.t('admin.pages.twitter_stats') }
 
   content do
     h2 I18n.t('admin.labels.stats')

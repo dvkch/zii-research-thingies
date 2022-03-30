@@ -5,11 +5,15 @@ class AuthorizationAdapter < ActiveAdmin::AuthorizationAdapter
     case subject
     when normalized(ActiveAdmin::Page)
       return true if subject&.name == 'Dashboard'
-      return true if subject&.name == 'Docs'
-      return true if subject&.name == 'Stats' && user.permission?(:admin)
-      return true if subject&.name == 'Health' && user.permission?(:admin)
+      return true if subject&.name == 'Twitter Stats'
       return true if subject&.name == 'Sidekiq' && user.permission?(:admin)
       user.permission?(:admin)
+
+    when normalized(TwitterSearch)
+      return true
+
+    when normalized(TwitterTweet)
+      return true
 
     when normalized(AdminUser)
       return true if [:read, :update].include?(action) && subject == user
