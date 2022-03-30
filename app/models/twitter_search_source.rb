@@ -3,7 +3,7 @@ require 'twitter_service'
 class TwitterSearchSource < ApplicationRecord
   belongs_to :twitter_search
 
-  after_update_commit :remove_tweets
+  after_update :remove_tweets
 
   has_many :twitter_tweets, dependent: :destroy
 
@@ -30,6 +30,6 @@ class TwitterSearchSource < ApplicationRecord
 
   def remove_tweets
     # search params have changed, let's remove old results
-    twitter_tweets.destroy_all if query_changed?
+    twitter_tweets.destroy_all if saved_change_to_query?
   end
 end

@@ -39,7 +39,7 @@ ActiveAdmin.register TwitterTweet do
     column :twitter_search_source
     column :url do |resource|
       table_actions do
-        item '>', resource.url, class: 'member_link', target: '_blank'
+        item fa_icon('twitter'), resource.url, class: 'member_link', target: '_blank'
       end
     end
     column :retweet_count
@@ -56,7 +56,7 @@ ActiveAdmin.register TwitterTweet do
       row :date
       row :url do |resource|
         table_actions do
-          item I18n.t('common.actions.view'), resource.url, class: 'member_link', target: '_blank'
+          item fa_icon('twitter'), resource.url, class: 'member_link', target: '_blank'
         end
       end
     end

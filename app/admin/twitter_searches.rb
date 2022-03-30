@@ -19,6 +19,11 @@ ActiveAdmin.register TwitterSearch do
         item I18n.t('common.actions.view'), admin_twitter_search_twitter_tweets_path(resource), class: 'member_link'
       end
     end
+    column I18n.t('admin.groups.twitter') do |resource|
+      table_actions do
+        item fa_icon('twitter'), resource.twitter_url, class: 'member_link', target: '_blank'
+      end
+    end
     actions
   end
 
@@ -35,6 +40,10 @@ ActiveAdmin.register TwitterSearch do
 
     panel I18n.t('attributes.twitter_tweets') do
       link_to I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'button'
+    end
+
+    panel I18n.t('admin.groups.twitter') do
+      link_to fa_icon('twitter'), resource.twitter_url, class: 'button', target: '_blank'
     end
 
     attributes_table title: I18n.t('admin.labels.metadata') do
