@@ -14,13 +14,13 @@ ActiveAdmin.register TwitterSearch do
     id_column
     column :name
     many_column :twitter_search_sources
-    column :twitter_tweets do |resource|
-      table_actions do
-        item fa_icon('twitter'), resource.twitter_url, class: 'member_link', target: '_blank'
-        item I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'member_link'
-      end
-    end
     actions
+  end
+
+  controller do
+    def show
+      redirect_to admin_twitter_search_twitter_tweets_path(resource)
+    end
   end
 
   show do

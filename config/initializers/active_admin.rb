@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'ext/active_admin_index_with_header'
 require 'ext/active_admin_path_fixes'
 require 'ext/active_admin_show_extensions'
 require 'ext/active_admin_tables_extensions'

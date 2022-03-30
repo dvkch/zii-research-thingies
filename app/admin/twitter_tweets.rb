@@ -28,25 +28,38 @@ ActiveAdmin.register TwitterTweet do
   filter :reply_count
   filter :quote_count
 
-
   includes :twitter_search, :twitter_search_source
 
-  index do
-    id_column
-    column :username
-    column :content
-    column :date
-    column :twitter_search_source
-    column :url do |resource|
-      table_actions do
-        item fa_icon('twitter'), resource.url, class: 'member_link', target: '_blank'
+  index as: ActiveAdmin::Views::IndexAsTableWithHeader do |_, part|
+    if part == :header
+      resource = TwitterSearch.find(params[:twitter_search_id])
+      panel '' do
+        index_table_for(resource.twitter_search_sources.includes(:twitter_tweets), class: 'index_table') do
+          column :query
+          column :twitter_tweets do |resource|
+            resource.twitter_tweets.size
+          end
+        end
       end
     end
-    column :retweet_count
-    column :like_count
-    column :reply_count
-    column :quote_count
-    actions
+
+    if part == :table
+      id_column
+      column :username
+      column :content
+      column :date
+      column :twitter_search_source
+      column :url do |resource|
+        table_actions do
+          item fa_icon('twitter'), resource.url, class: 'member_link', target: '_blank'
+        end
+      end
+      column :retweet_count
+      column :like_count
+      column :reply_count
+      column :quote_count
+      actions
+    end
   end
 
   show do
@@ -78,25 +91,18 @@ ActiveAdmin.register TwitterTweet do
     # end
   end
 
-  # action_item :count_tweets, only: :index, priority: 1 do
-  #   link_to I18n.t('admin.actions.count_tweets'), count_tweets_admin_twitter_search_twitter_tweets_path(twitter_search), method: :post
-  # end
-  #
-  # collection_action :count_tweets, method: :post do
-  #   search = TwitterSearch.find(params[:twitter_search_id])
-  #   count = search.count_tweets
-  #
-  #   redirect_to admin_twitter_search_twitter_tweets_path(search), notice: I18n.t('admin.notices.twitter.estimated_count', count: count)
-  # end
-  #
-  # action_item :refresh_tweets, only: :index, priority: 2 do
-  #   link_to I18n.t('admin.actions.refresh_tweets'), refresh_tweets_admin_twitter_search_twitter_tweets_path(twitter_search), method: :post
-  # end
-  #
-  # collection_action :refresh_tweets, method: :post do
-  #   search = TwitterSearch.find(params[:twitter_search_id])
-  #   search.refresh_tweets
-  #
-  #   redirect_to admin_twitter_search_twitter_tweets_path(search), notice: I18n.t('admin.notices.twitter.refreshed_tweets')
-  # end
+  action_item :open_twitter_search, only: :index, priority: 1 do
+    resource = TwitterSearch.find(params[:twitter_search_id])
+    link_to fa_icon('twitter'), resource.twitter_url, class: 'button', target: '_blank'
+  end
+
+  action_item :edit_search, only: :index, priority: 2 do
+    title = [I18n.t('common.actions.edit'), I18n.t('activerecord.models.twitter_search.one')].join(' ')
+    link_to title, edit_admin_twitter_search_path(params[:twitter_search_id]), class: 'button'
+  end
+
+  action_item :delete_search, only: :index, priority: 3 do
+    title = [I18n.t('common.actions.delete'), I18n.t('activerecord.models.twitter_search.one')].join(' ')
+    link_to title, admin_twitter_search_path(params[:twitter_search_id]), class: 'button', method: :delete, data: { confirm: I18n.t('active_admin.delete_confirmation') }
+  end
 end
