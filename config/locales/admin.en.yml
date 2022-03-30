@@ -39,6 +39,7 @@ en:
       apply: "Apply"
       reset: "Reset"
       count_tweets: "Estimate tweet count"
+      allow_search_update_with_estimated_count: "Allow update and download of %{count} tweets"
     notices:
       twitter:
         estimated_count: "Estimated count: %{count} tweets"

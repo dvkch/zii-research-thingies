@@ -29,7 +29,7 @@ class TwitterSearchSource < ApplicationRecord
   protected
 
   def remove_tweets
-    # search params have changed, let's remove old results
-    twitter_tweets.destroy_all if saved_change_to_query?
+    # search params have changed, let's remove old results and pull new ones
+    refresh_tweets if saved_change_to_query?
   end
 end

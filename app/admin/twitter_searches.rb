@@ -3,7 +3,7 @@
 ActiveAdmin.register TwitterSearch do
   menu parent: 'twitter', priority: 1
 
-  permit_params :name, twitter_search_sources_attributes: [:id, :_destroy, :query]
+  permit_params :name, :allow_update, twitter_search_sources_attributes: [:id, :_destroy, :query]
 
   filter :name
 
@@ -16,12 +16,8 @@ ActiveAdmin.register TwitterSearch do
     many_column :twitter_search_sources
     column :twitter_tweets do |resource|
       table_actions do
-        item I18n.t('common.actions.view'), admin_twitter_search_twitter_tweets_path(resource), class: 'member_link'
-      end
-    end
-    column I18n.t('admin.groups.twitter') do |resource|
-      table_actions do
         item fa_icon('twitter'), resource.twitter_url, class: 'member_link', target: '_blank'
+        item I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'member_link'
       end
     end
     actions
@@ -33,17 +29,18 @@ ActiveAdmin.register TwitterSearch do
     end
 
     panel I18n.t('attributes.twitter_search_sources') do
-      index_table_for(resource.twitter_search_sources, class: 'index_table') do
+      index_table_for(resource.twitter_search_sources.includes(:twitter_tweets), class: 'index_table') do
         column :query
+        column :twitter_tweets do |resource|
+          resource.twitter_tweets.size
+        end
       end
-    end
-
-    panel I18n.t('attributes.twitter_tweets') do
-      link_to I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'button'
-    end
-
-    panel I18n.t('admin.groups.twitter') do
-      link_to fa_icon('twitter'), resource.twitter_url, class: 'button', target: '_blank'
+      para class: 'inline' do
+        link_to fa_icon('twitter'), resource.twitter_url, class: 'button', target: '_blank'
+      end
+      para class: 'inline' do
+        link_to I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'button'
+      end
     end
 
     attributes_table title: I18n.t('admin.labels.metadata') do
@@ -69,6 +66,17 @@ ActiveAdmin.register TwitterSearch do
       end
     end
 
-    f.actions
+    if !f.object.errors.key?(:estimated_count)
+      f.actions do
+        f.action(:submit, label: I18n.t('admin.actions.count_tweets'))
+        f.cancel_link
+      end
+    else
+      f.inputs do
+        count = f.object.errors.messages[:estimated_count].first.to_i
+        f.input :allow_update, as: :boolean, label: I18n.t('admin.actions.allow_search_update_with_estimated_count', count: count)
+      end
+      f.actions
+    end
   end
 end

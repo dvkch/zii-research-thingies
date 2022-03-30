@@ -19,4 +19,13 @@ class TwitterSearch < ApplicationRecord
   end
 
   validates :name, presence: true
+  validate :handle_admin_update
+
+  attr_accessor :allow_update
+
+  def handle_admin_update
+    return if allow_update == '1'
+
+    errors.add(:estimated_count, count_tweets)
+  end
 end
