@@ -14,3 +14,15 @@
 .flash.flash_error {
   background-color: $alert-error-color;
 }
+
+.header .site_title {
+  overflow: hidden;
+  p {
+    vertical-align: middle;
+    display: table-cell;
+    height: inherit;
+    line-height: normal;
+    font-size: 17px;
+    max-lines: 2;
+  }
+}
