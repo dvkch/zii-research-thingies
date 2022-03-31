@@ -11,6 +11,8 @@ en:
     first_name: "First name"
     full_name: "Full name"
     id: "ID"
+    key: "Key"
+    keywords: "Keywords"
     kind: "Kind"
     last_name: "Name"
     last_sign_in_at: "Last sign in at"
@@ -37,12 +39,15 @@ en:
     twitter_tweets: "Tweets"
     updated_at: "Updated at"
     username: "Username"
-    keywords: "Keywords"
+    value: "Value"
   activerecord:
     models:
       admin_user:
         one: "Admin user"
         other: "Admin users"
+      cached_item:
+        one: "Cached item"
+        other: "Cached items"
       twitter_search:
         one: "Search"
         other: "Searches"
