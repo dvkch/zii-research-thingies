@@ -27,12 +27,15 @@ fr:
         n: "%{n} points"
         label: "Granularité"
         hint: "Certaines données ont trop de points et deviennent illisible. Ceci limite le nombre de points en affichant les résultats par intervalles"
+      trend_country: "Pays"
+      trend_keywords: "Trends"
     groups:
       advanced: "Avancé"
       twitter: "Twitter"
     pages:
       home: "Accueil"
       twitter_stats: "Stats"
+      twitter_trends: "Trends"
     actions:
       refresh_tweets: "Rafraichir les tweets"
       see_tweets: "Voir les tweets >"

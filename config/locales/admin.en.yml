@@ -27,12 +27,15 @@ en:
         n: "%{n} points"
         label: "Granularity"
         hint: "Some data have too many points and become unreadable. This will limit the number of points by showing values for ranges instead"
+      trend_country: "Country"
+      trend_keywords: "Trends"
     groups:
       advanced: "Advanced"
       twitter: "Twitter"
     pages:
       home: "Home"
       twitter_stats: "Stats"
+      twitter_trends: "Trends"
     actions:
       refresh_tweets: "Refresh tweets"
       see_tweets: "See tweets >"

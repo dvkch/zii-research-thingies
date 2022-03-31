@@ -30,6 +30,14 @@ class ActiveAdmin::Views::Pages::Page
     (params.dig(:config, :keywords) || []).reject(&:empty?)
   end
 
+  def selected_trend_country
+    params.dig(:config, :trend_country)
+  end
+
+  def selected_trend_keywords
+    (params.dig(:config, :trend_keywords) || []).reject(&:empty?)
+  end
+
   def show_filters(filters)
     date_granularities = [
       [I18n.t('admin.labels.date_granularity.minute'), 'group_by_minute'],
@@ -70,11 +78,23 @@ class ActiveAdmin::Views::Pages::Page
                       as: :array,
                       label: I18n.t('attributes.keywords'),
                       value: page.selected_keywords
+            when :trend_country
+              f.input :trend_country,
+                      as: :select, required: true,
+                      label: I18n.t('admin.labels.trend_country'),
+                      collection: TwitterTrendingArchive.new.countries,
+                      selected: page.selected_trend_country
+            when :trend_keywords
+              f.input :trend_keywords,
+                      as: :select, required: true, multiple: true,
+                      label: I18n.t('admin.labels.trend_keywords'),
+                      collection: TwitterTrendingArchive.new.keywords(page.selected_trend_country, Date.parse(page.selected_from), Date.parse(page.selected_to)),
+                      selected: page.selected_trend_keywords
 
             when :from
-              f.input :from, as: :date_time_picker, value: page.selected_from, required: false
+              f.input :from, as: :datepicker, input_html: { value: page.selected_from }, required: false
             when :to
-              f.input :to, as: :date_time_picker, value: page.selected_to, required: false
+              f.input :to, as: :datepicker, input_html: { value: page.selected_to }, required: false
             when :date_granularity
               f.input :date_granularity,
                       as: :select, required: false,

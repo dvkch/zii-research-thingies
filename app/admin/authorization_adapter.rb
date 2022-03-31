@@ -6,6 +6,7 @@ class AuthorizationAdapter < ActiveAdmin::AuthorizationAdapter
     when normalized(ActiveAdmin::Page)
       return true if subject&.name == 'Dashboard'
       return true if subject&.name == 'Twitter Stats'
+      return true if subject&.name == 'Twitter Trends'
       return true if subject&.name == 'Sidekiq' && user.permission?(:admin)
       user.permission?(:admin)
 
