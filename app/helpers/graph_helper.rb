@@ -2,15 +2,19 @@
 
 module GraphHelper
   class << self
-    def add_missing_points!(series, value = 0)
+    def all_keys(series)
+      series
+        .map { |serie| serie[:data].keys }
+        .flatten
+        .uniq
+        .sort
+    end
+
+    def add_missing_points!(series, keys = nil, value = 0)
       # makes sure there is the same number of points in all series. that doesn't mean
       # that the resulting list of points will be complete. we may still jump from a Monday to Saturday if
       # there was no data in between in all series
-      keys = series
-               .map { |serie| serie[:data].keys }
-               .flatten
-               .uniq
-               .sort
+      keys ||= all_keys(series)
       series.each do |serie|
         missing_keys = keys.to_set - serie[:data].keys.to_set
         missing_keys.each { |key| serie[:data][key] = value }

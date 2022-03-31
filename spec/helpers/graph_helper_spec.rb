@@ -16,7 +16,7 @@ RSpec.describe GraphHelper, type: :helper do
       { name: 'Last', data: data2 }
     ]
 
-    GraphHelper.add_missing_points!(series, 10)
+    GraphHelper.add_missing_points!(series, nil, 10)
 
     expect(series.first[:data]).to contain_keys [:oranges, :apples, :bananas]
     expect(series.first[:data][:oranges]).to eq 1 # unchanged
