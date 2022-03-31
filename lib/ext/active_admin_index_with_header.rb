@@ -15,11 +15,13 @@ module ActiveAdmin
           instance_exec(self, :header, &page_presenter.block)
         end
 
-        table_for collection, table_options do |t|
-          if page_presenter.block
-            instance_exec(t, :table, &page_presenter.block)
-          else
-            instance_exec(t, &default_table)
+        unless collection.empty?
+          table_for collection, table_options do |t|
+            if page_presenter.block
+              instance_exec(t, :table, &page_presenter.block)
+            else
+              instance_exec(t, &default_table)
+            end
           end
         end
       end
