@@ -39,28 +39,6 @@ class ActiveAdmin::Views::Pages::Page
   end
 
   def show_filters(filters)
-    date_granularities = [
-      [I18n.t('admin.labels.date_granularity.minute'), 'group_by_minute'],
-      [I18n.t('admin.labels.date_granularity.hourly'), 'group_by_hour'],
-      [I18n.t('admin.labels.date_granularity.daily'), 'group_by_day'],
-      [I18n.t('admin.labels.date_granularity.weekly'), 'group_by_week'],
-      [I18n.t('admin.labels.date_granularity.monthly'), 'group_by_month']
-    ]
-
-    twitter_searches = TwitterSearch.all.map { |model| [model.name, model.id] }
-
-    smooth_extents = [
-      [I18n.t('admin.labels.smoothing.none'), 0],
-      [I18n.t('admin.labels.smoothing.extent_1'), 1]
-    ]
-    (2..8).each { |n| smooth_extents << [I18n.t('admin.labels.smoothing.extent_n', n: n), n] }
-
-    numeric_granularities = [
-      [I18n.t('admin.labels.numeric_granularity.all'), 0]
-    ]
-    [2000, 1000, 500, 200, 100, 50, 20, 10]
-      .each { |n| numeric_granularities << [I18n.t('admin.labels.numeric_granularity.n', n: n), n] }
-
     from_to_options = {}
     if filters.include?(:trend_country)
       from_to_options[:minDate] = TwitterTrendingArchive.new.start_date.strftime('%Y-%m-%d')
@@ -74,6 +52,7 @@ class ActiveAdmin::Views::Pages::Page
           filters.each do |filter|
             case filter
             when :twitter_search
+              twitter_searches = TwitterSearch.all.map { |model| [model.name, model.id] }
               f.input :twitter_search,
                       as: :select, required: true,
                       label: I18n.t('activerecord.models.twitter_search.one'),
@@ -91,11 +70,13 @@ class ActiveAdmin::Views::Pages::Page
                       collection: TwitterTrendingArchive.new.countries,
                       selected: page.selected_trend_country
             when :trend_keywords
+              trend_keywords = TwitterTrendingArchive.new.keywords(page.selected_trend_country, Date.parse(page.selected_from), Date.parse(page.selected_to))
               f.input :trend_keywords,
                       as: :select, required: true, multiple: true,
                       label: I18n.t('admin.labels.trend_keywords'),
-                      collection: TwitterTrendingArchive.new.keywords(page.selected_trend_country, Date.parse(page.selected_from), Date.parse(page.selected_to)),
-                      selected: page.selected_trend_keywords
+                      collection: trend_keywords,
+                      selected: page.selected_trend_keywords,
+                      hint: "#{trend_keywords.size} #{I18n.t('admin.labels.trend_keywords').downcase}"
 
             when :from
               f.input :from,
@@ -106,12 +87,26 @@ class ActiveAdmin::Views::Pages::Page
                       as: :datepicker, required: false,
                       input_html: { value: page.selected_to, data: { 'datepicker-options': from_to_options } }
             when :date_granularity
+              date_granularities = [
+                [I18n.t('admin.labels.date_granularity.minute'), 'group_by_minute'],
+                [I18n.t('admin.labels.date_granularity.hourly'), 'group_by_hour'],
+                [I18n.t('admin.labels.date_granularity.daily'), 'group_by_day'],
+                [I18n.t('admin.labels.date_granularity.weekly'), 'group_by_week'],
+                [I18n.t('admin.labels.date_granularity.monthly'), 'group_by_month']
+              ]
+
               f.input :date_granularity,
                       as: :select, required: false,
                       label: I18n.t('admin.labels.date_granularity.label'),
                       collection: date_granularities,
                       selected: page.selected_date_granularity.to_s
             when :smooth_extent
+              smooth_extents = [
+                [I18n.t('admin.labels.smoothing.none'), 0],
+                [I18n.t('admin.labels.smoothing.extent_1'), 1]
+              ]
+              (2..8).each { |n| smooth_extents << [I18n.t('admin.labels.smoothing.extent_n', n: n), n] }
+
               f.input :smooth_extent,
                       as: :select, required: false,
                       label: I18n.t('admin.labels.smoothing.label'),
@@ -119,6 +114,12 @@ class ActiveAdmin::Views::Pages::Page
                       collection: smooth_extents,
                       selected: page.selected_smooth_extent
             when :numeric_granularity
+              numeric_granularities = [
+                [I18n.t('admin.labels.numeric_granularity.all'), 0]
+              ]
+              [2000, 1000, 500, 200, 100, 50, 20, 10]
+                .each { |n| numeric_granularities << [I18n.t('admin.labels.numeric_granularity.n', n: n), n] }
+
               f.input :numeric_granularity,
                       as: :select, required: false,
                       label: I18n.t('admin.labels.numeric_granularity.label'),
