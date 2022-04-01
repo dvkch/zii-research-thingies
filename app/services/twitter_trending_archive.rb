@@ -62,6 +62,7 @@ class TwitterTrendingArchive
   def get_xml(url, css)
     data = Rails.cache.fetch(url) do
       CachedItem.fetch(url) do
+        puts "Fetching archive at #{url}"
         RestClient.get(url).body
       end
     end
