@@ -13,22 +13,15 @@ class TwitterTrendingArchive
   end
 
   def keywords(country, from, to)
-    day_series = (from..to).map do |day|
-      Rails.cache.fetch("TwitterTrendingArchive-#{country}-#{day}") do
-        day_trends(country, day)
-      end
-    end
-
-    day_series.map(&:keys).flatten.sort.uniq.to_a
+    data = date_range_data(country, from, to)
+    data.map(&:keys).flatten.sort.uniq.to_a
   end
 
   def date_range_trends(country, from, to)
-    day_series = (from..to).map do |day|
-      day_trends(country, day)
-    end
+    data = date_range_data(country, from, to)
 
     series = {}
-    day_series.each do |s|
+    data.each do |s|
       series.merge!(s) do |_, value1, value2|
         value1.merge(value2)
       end
@@ -36,7 +29,18 @@ class TwitterTrendingArchive
     series
   end
 
-  def day_trends(country, date)
+  protected
+
+  def date_range_data(country, from, to)
+    dates = (from..to).to_a
+    Parallel.map(dates, in_threads: 4) do |day|
+      Rails.cache.fetch("TwitterTrendingArchive-#{country}-#{day}") do
+        day_data(country, day)
+      end
+    end
+  end
+
+  def day_data(country, date)
     series = {}
 
     times = get_xml("https://archive.twitter-trending.com/#{country}/#{date.strftime('%d-%m-%Y')}", '#all_table .tek_tablo')
@@ -56,8 +60,6 @@ class TwitterTrendingArchive
 
     series
   end
-
-  protected
 
   def get_xml(url, css)
     data = Rails.cache.fetch(url) do
