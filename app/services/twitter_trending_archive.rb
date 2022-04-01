@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class TwitterTrendingArchive
   def start_date
-    '2018-11-26'
+    Date.new(2018, 11, 26)
   end
 
   def countries

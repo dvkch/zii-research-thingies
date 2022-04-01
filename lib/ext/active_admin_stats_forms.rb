@@ -62,7 +62,10 @@ class ActiveAdmin::Views::Pages::Page
       .each { |n| numeric_granularities << [I18n.t('admin.labels.numeric_granularity.n', n: n), n] }
 
     from_to_options = {}
-    from_to_options[:minDate] = TwitterTrendingArchive.new.start_date if filters.include?(:trend_country)
+    if filters.include?(:trend_country)
+      from_to_options[:minDate] = TwitterTrendingArchive.new.start_date.strftime('%Y-%m-%d')
+      from_to_options[:maxDate] = Date.today.strftime('%Y-%m-%d')
+    end
 
     page = self
     panel '' do
