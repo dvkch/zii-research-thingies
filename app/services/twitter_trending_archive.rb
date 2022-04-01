@@ -1,6 +1,10 @@
 require 'nokogiri'
 
 class TwitterTrendingArchive
+  def start_date
+    '2018-11-26'
+  end
+
   def countries
     countries = get_xml('https://archive.twitter-trending.com/', '#dsad option')
     countries

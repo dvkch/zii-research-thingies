@@ -61,6 +61,9 @@ class ActiveAdmin::Views::Pages::Page
     [2000, 1000, 500, 200, 100, 50, 20, 10]
       .each { |n| numeric_granularities << [I18n.t('admin.labels.numeric_granularity.n', n: n), n] }
 
+    from_to_options = {}
+    from_to_options[:minDate] = TwitterTrendingArchive.new.start_date if filters.include?(:trend_country)
+
     page = self
     panel '' do
       active_admin_form_for(:config, url: request.path, html: { method: :get, class: 'admin-input' }) do |f|
@@ -92,9 +95,13 @@ class ActiveAdmin::Views::Pages::Page
                       selected: page.selected_trend_keywords
 
             when :from
-              f.input :from, as: :datepicker, input_html: { value: page.selected_from }, required: false
+              f.input :from,
+                      as: :datepicker, required: false,
+                      input_html: { value: page.selected_from, data: { 'datepicker-options': from_to_options } }
             when :to
-              f.input :to, as: :datepicker, input_html: { value: page.selected_to }, required: false
+              f.input :to,
+                      as: :datepicker, required: false,
+                      input_html: { value: page.selected_to, data: { 'datepicker-options': from_to_options } }
             when :date_granularity
               f.input :date_granularity,
                       as: :select, required: false,
