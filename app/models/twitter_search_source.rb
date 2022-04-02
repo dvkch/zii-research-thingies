@@ -3,9 +3,6 @@ require 'twitter_service'
 class TwitterSearchSource < ApplicationRecord
   belongs_to :twitter_search
 
-  after_create :update_tweets
-  after_update :update_tweets
-
   has_many :twitter_tweets, dependent: :destroy
 
   def display_name
@@ -33,6 +30,12 @@ class TwitterSearchSource < ApplicationRecord
     end
   end
 
+  def refresh_tweets_if_needed
+    if saved_change_to_query? || saved_change_to_start_time? || saved_change_to_end_time?
+      refresh_tweets
+    end
+  end
+
   def count_tweets
     TwitterService.new.count_tweets(self)
   rescue ZiiResearchThingies::Error => e
@@ -41,11 +44,4 @@ class TwitterSearchSource < ApplicationRecord
   end
 
   validates :query, presence: true
-
-  protected
-
-  def update_tweets
-    # search params have changed, let's remove old results and pull new ones
-    refresh_tweets if saved_change_to_query?
-  end
 end

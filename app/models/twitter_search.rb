@@ -12,6 +12,10 @@ class TwitterSearch < ApplicationRecord
     twitter_search_sources.each(&:refresh_tweets)
   end
 
+  def refresh_tweets_if_needed
+    twitter_search_sources.each(&:refresh_tweets_if_needed)
+  end
+
   def twitter_url
     query = twitter_search_sources.map { |s| "(#{s.query})" }.join(' OR ')
     uri = URI::HTTPS.build(host: 'twitter.com', path: '/search', query: URI.encode_www_form(q: query, src: 'typed_query'))

@@ -14,6 +14,9 @@ ActiveAdmin.register TwitterSearch do
     id_column
     column :name
     many_column :twitter_search_sources
+    column :twitter_tweets do |resource|
+      resource.twitter_tweets.size
+    end
     actions
   end
 
@@ -81,5 +84,13 @@ ActiveAdmin.register TwitterSearch do
       end
       f.actions
     end
+  end
+
+  after_create do |resource|
+    resource.refresh_tweets_if_needed if resource.errors.empty?
+  end
+
+  after_update do |resource|
+    resource.refresh_tweets_if_needed if resource.errors.empty?
   end
 end
