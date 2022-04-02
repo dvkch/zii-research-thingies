@@ -3,7 +3,7 @@
 ActiveAdmin.register TwitterSearch do
   menu parent: 'twitter', priority: 1
 
-  permit_params :name, :allow_update, twitter_search_sources_attributes: [:id, :_destroy, :query]
+  permit_params :name, :allow_update, twitter_search_sources_attributes: [:id, :_destroy, :query, :end_time, :start_time]
 
   filter :name
 
@@ -31,6 +31,8 @@ ActiveAdmin.register TwitterSearch do
     panel I18n.t('attributes.twitter_search_sources') do
       index_table_for(resource.twitter_search_sources.includes(:twitter_tweets), class: 'index_table') do
         column :query
+        column :start_time, &:human_start_time
+        column :end_time, &:human_end_time
         column :twitter_tweets do |resource|
           resource.twitter_tweets.size
         end
@@ -63,6 +65,8 @@ ActiveAdmin.register TwitterSearch do
       ) do |param|
         param.semantic_errors
         param.input :query, placeholder: I18n.t('attributes.query'), hint: '<a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list" target="_blank">Building a query</a>'.html_safe
+        param.input :start_time, as: :date_time_picker, hint: 'By default, a request will return Tweets from up to 30 days ago if you do not include this parameter.'
+        param.input :end_time, as: :date_time_picker, hint: 'If used without start_time, Tweets from 30 days before end_time will be returned by default. If not specified, end_time will default to [now - 30 seconds].'
       end
     end
 

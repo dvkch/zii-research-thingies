@@ -36,6 +36,8 @@ ActiveAdmin.register TwitterTweet do
       panel '' do
         index_table_for(resource.twitter_search_sources.includes(:twitter_tweets), class: 'index_table') do
           column :query
+          column :start_time, &:human_start_time
+          column :end_time, &:human_end_time
           column :twitter_tweets do |resource|
             resource.twitter_tweets.size
           end

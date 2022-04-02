@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_31_214128) do
+ActiveRecord::Schema.define(version: 2022_04_02_102216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_03_31_214128) do
     t.string "query", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "end_time"
+    t.datetime "start_time"
     t.index ["twitter_search_id"], name: "index_twitter_search_sources_on_twitter_search_id"
   end
 

@@ -9,7 +9,19 @@ class TwitterSearchSource < ApplicationRecord
   has_many :twitter_tweets, dependent: :destroy
 
   def display_name
-    query
+    [
+      query,
+      "from: #{human_start_time}",
+      "to: #{human_end_time}"
+    ].join(', ')
+  end
+
+  def human_start_time
+    start_time || '30 days ago'
+  end
+
+  def human_end_time
+    end_time || (start_time ? start_time - 30.days : '30s ago')
   end
 
   # https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query

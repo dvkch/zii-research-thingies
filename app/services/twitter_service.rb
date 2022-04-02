@@ -7,11 +7,11 @@ class TwitterService
   end
 
   def load_tweets(source)
-    internal_load_and_save_tweets(source, source.query)
+    internal_load_and_save_tweets(source, source.query, source.start_time, source.end_time)
   end
 
   def count_tweets(source)
-    internal_count_tweets(source.query)
+    internal_count_tweets(source.query, source.start_time, source.end_time)
   end
 
   def embed_html(url)
@@ -22,10 +22,13 @@ class TwitterService
 
   protected
 
-  def internal_count_tweets(query)
+  def internal_count_tweets(query, start_time, end_time)
     options = {
       granularity: 'day'
     }
+    options[:start_time] = start_time.iso8601 if start_time
+    options[:end_time] = end_time.iso8601 if end_time
+
     json = @client.count(
       query,
       type: :tweets,
@@ -41,7 +44,7 @@ class TwitterService
     count.reduce(0, :+)
   end
 
-  def internal_load_and_save_tweets(source, query, next_token: nil)
+  def internal_load_and_save_tweets(source, query, start_time, end_time, next_token: nil)
     options = {
       'tweet.fields': 'created_at,public_metrics,conversation_id',
       'user.fields': 'username',
@@ -49,9 +52,11 @@ class TwitterService
       'max_results': 100
     }
     options[:next_token] = next_token if next_token
+    options[:start_time] = start_time.iso8601 if start_time
+    options[:end_time] = end_time.iso8601 if end_time
     options
 
-    json = @client.search(
+    json = @client.archive(
       query,
       type: :tweets,
       **options
@@ -77,7 +82,7 @@ class TwitterService
     end
 
     if (next_token = json.dig('meta', 'next_token'))
-      internal_load_and_save_tweets(source, query, next_token: next_token)
+      internal_load_and_save_tweets(source, query, start_time, end_time, next_token: next_token)
     else
       puts "#{query}: Done"
     end
