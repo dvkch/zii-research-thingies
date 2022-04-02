@@ -35,6 +35,9 @@ class TwitterSearchSource < ApplicationRecord
 
   def count_tweets
     TwitterService.new.count_tweets(self)
+  rescue ZiiResearchThingies::Error => e
+    errors.add(:query, e.message)
+    0
   end
 
   validates :query, presence: true
