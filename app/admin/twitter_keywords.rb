@@ -17,11 +17,11 @@ ActiveAdmin.register_page 'Twitter Keywords' do
       scope = (selected_twitter_search&.twitter_tweets || TwitterTweet)
       scope = scope.where('date >= ?', selected_from) if selected_from.present?
       scope = scope.where('date <= ?', selected_to) if selected_to.present?
-      words = scope.common_words(min_word_length: selected_min_character_count, limit: selected_limit).map(&:first)
+      words = scope.common_words(min_word_length: selected_min_character_count, limit: selected_limit)
       ul class: 'word_tags' do
-        words.each do |w|
+        words.each do |word|
           li do
-            w
+            "#{word[0]} (#{word[1]})"
           end
         end
       end
