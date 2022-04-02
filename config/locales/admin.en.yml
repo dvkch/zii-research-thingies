@@ -38,6 +38,7 @@ en:
       twitter_stats: "Stats"
       twitter_trends: "Trends"
       sidekiq: "Sidekiq"
+      twitter_keywords: "Keywords"
     actions:
       refresh_tweets: "Refresh tweets"
       see_tweets: "See tweets >"

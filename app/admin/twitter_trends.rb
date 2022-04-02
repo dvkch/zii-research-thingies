@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register_page 'Twitter Trends' do
-  menu parent: 'twitter', priority: 4, label: proc { I18n.t('admin.pages.twitter_trends') }
+  menu parent: 'twitter', priority: 5, label: proc { I18n.t('admin.pages.twitter_trends') }
 
   content do
     h2 I18n.t('admin.pages.twitter_trends')

@@ -5,6 +5,14 @@ class ActiveAdmin::Views::Pages::Page
     params.dig(:config, :date_granularity)&.presence&.to_sym || :group_by_day
   end
 
+  def selected_limit
+    (1..2000).bound(params.dig(:config, :limit)&.to_i || 50)
+  end
+
+  def selected_character_count
+    (1..100).bound(params.dig(:config, :character_count)&.to_i || 2)
+  end
+
   def selected_from
     params.dig(:config, :from)
   end
@@ -86,6 +94,13 @@ class ActiveAdmin::Views::Pages::Page
               f.input :to,
                       as: :datepicker, required: false,
                       input_html: { value: page.selected_to, data: { 'datepicker-options': from_to_options } }
+
+            when :limit
+              f.input :limit, as: :number, required: false, in: 1..2000, input_html: { value: page.selected_limit }
+
+            when :character_count
+              f.input :character_count, as: :number, required: false, in: 1..100, input_html: { value: page.selected_character_count }
+
             when :date_granularity
               date_granularities = [
                 [I18n.t('admin.labels.date_granularity.minute'), 'group_by_minute'],

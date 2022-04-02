@@ -80,6 +80,7 @@ feature 'admin is scoped using AdminUser permissions' do
 
         I18n.t('activerecord.models.twitter_search.other'),
         I18n.t('admin.pages.twitter_stats'),
+        I18n.t('admin.pages.twitter_keywords'),
         I18n.t('admin.pages.twitter_trends'),
 
         I18n.t('activerecord.models.admin_user.other'),
@@ -101,6 +102,7 @@ feature 'admin is scoped using AdminUser permissions' do
 
       I18n.t('activerecord.models.twitter_search.other'),
       I18n.t('admin.pages.twitter_stats'),
+      I18n.t('admin.pages.twitter_keywords'),
       I18n.t('admin.pages.twitter_trends'),
     )
   end
