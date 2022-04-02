@@ -53,7 +53,7 @@ ActiveAdmin.register TwitterTweet do
       column :twitter_search_source
       column :url do |resource|
         table_actions do
-          item fa_icon('twitter'), resource.url, class: 'member_link', target: '_blank'
+          item fa_icon('twitter', class: 'fab'), resource.url, class: 'member_link', target: '_blank'
         end
       end
       column :retweet_count
@@ -71,7 +71,7 @@ ActiveAdmin.register TwitterTweet do
       row :date
       row :url do |resource|
         table_actions do
-          item fa_icon('twitter'), resource.url, class: 'member_link', target: '_blank'
+          item fa_icon('twitter', class: 'fab'), resource.url, class: 'member_link', target: '_blank'
         end
       end
     end
@@ -95,7 +95,7 @@ ActiveAdmin.register TwitterTweet do
 
   action_item :open_twitter_search, only: :index, priority: 1 do
     resource = TwitterSearch.find(params[:twitter_search_id])
-    link_to fa_icon('twitter'), resource.twitter_url, class: 'button', target: '_blank'
+    link_to fa_icon('twitter', class: 'fab'), resource.twitter_url, class: 'button', target: '_blank'
   end
 
   action_item :edit_search, only: :index, priority: 2 do

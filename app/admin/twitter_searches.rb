@@ -38,7 +38,7 @@ ActiveAdmin.register TwitterSearch do
         end
       end
       para class: 'inline' do
-        link_to fa_icon('twitter'), resource.twitter_url, class: 'button', target: '_blank'
+        link_to fa_icon('twitter', class: 'fab'), resource.twitter_url, class: 'button', target: '_blank'
       end
       para class: 'inline' do
         link_to I18n.t('admin.actions.see_tweets'), admin_twitter_search_twitter_tweets_path(resource), class: 'button'
