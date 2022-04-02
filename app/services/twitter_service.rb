@@ -22,10 +22,11 @@ class TwitterService
 
   protected
 
-  def internal_count_tweets(query, start_time, end_time)
+  def internal_count_tweets(query, start_time, end_time, next_token: nil)
     options = {
       granularity: 'day'
     }
+    options[:next_token] = next_token if next_token
     options[:start_time] = start_time.iso8601 if start_time
     options[:end_time] = end_time.iso8601 if end_time
 
@@ -40,8 +41,12 @@ class TwitterService
       raise ZiiResearchThingies::Error, messages.join(', ')
     end
 
-    count = (json['data'] || []).map { |item| item['tweet_count'] || 0 }
-    count.reduce(0, :+)
+    count = json.dig('meta', 'total_tweet_count') || 0
+
+    if (next_token = json.dig('meta', 'next_token'))
+      count += internal_count_tweets(query, start_time, end_time, next_token: next_token)
+    end
+    count
   end
 
   def internal_load_and_save_tweets(source, query, start_time, end_time, next_token: nil)
@@ -54,7 +59,6 @@ class TwitterService
     options[:next_token] = next_token if next_token
     options[:start_time] = start_time.iso8601 if start_time
     options[:end_time] = end_time.iso8601 if end_time
-    options
 
     json = @client.archive(
       query,
