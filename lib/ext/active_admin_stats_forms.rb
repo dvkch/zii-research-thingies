@@ -70,7 +70,8 @@ class ActiveAdmin::Views::Pages::Page
               f.input :keywords,
                       as: :array,
                       label: I18n.t('attributes.keywords'),
-                      value: page.selected_keywords
+                      value: page.selected_keywords,
+                      hint: I18n.t('admin.labels.keywords_hint_space')
             when :trend_country
               f.input :trend_country,
                       as: :select, required: true,

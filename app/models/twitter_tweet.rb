@@ -25,7 +25,7 @@ SQL
   pg_search_scope :search,
                   against: :content,
                   ignoring: :accents,
-                  using: { tsearch: { prefix: true } },
+                  using: { tsearch: { prefix: true, any_word: true } },
                   order_within_rank: 'twitter_tweets.date DESC'
 
   validates :date, presence: true

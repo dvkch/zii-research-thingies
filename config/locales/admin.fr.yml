@@ -30,6 +30,7 @@ fr:
       trend_country: "Pays"
       trend_keywords: "Trends"
       no_sidekiq: "Sidekiq n'est pas configuré sur cette instance"
+      keywords_hint_space: "Séparer les mots clefs par un espace"
     groups:
       advanced: "Avancé"
       twitter: "Twitter"
