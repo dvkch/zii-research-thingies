@@ -83,6 +83,7 @@ feature 'admin is scoped using AdminUser permissions' do
         I18n.t('admin.pages.twitter_trends'),
 
         I18n.t('activerecord.models.admin_user.other'),
+        I18n.t('admin.pages.sidekiq'),
       ]
       permission_allows_menus(*expected)
     end

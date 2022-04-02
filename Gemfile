@@ -20,6 +20,7 @@ gem 'devise', '~> 4.7'
 gem 'parallel', '~> 1.22.1'
 gem 'pg_search', '~> 2.3'
 gem 'rest-client', '~> 2.1'
+gem 'sidekiq', '~> 6.3'
 
 gem 'activeadmin', '~> 2.7'
 gem 'activeadmin_addons', '~> 1.7'

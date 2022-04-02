@@ -29,6 +29,7 @@ en:
         hint: "Some data have too many points and become unreadable. This will limit the number of points by showing values for ranges instead"
       trend_country: "Country"
       trend_keywords: "Trends"
+      no_sidekiq: "Sidekiq is not configured on this instance"
     groups:
       advanced: "Advanced"
       twitter: "Twitter"
@@ -36,6 +37,7 @@ en:
       home: "Home"
       twitter_stats: "Stats"
       twitter_trends: "Trends"
+      sidekiq: "Sidekiq"
     actions:
       refresh_tweets: "Refresh tweets"
       see_tweets: "See tweets >"

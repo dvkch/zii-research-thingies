@@ -29,6 +29,7 @@ fr:
         hint: "Certaines données ont trop de points et deviennent illisible. Ceci limite le nombre de points en affichant les résultats par intervalles"
       trend_country: "Pays"
       trend_keywords: "Trends"
+      no_sidekiq: "Sidekiq n'est pas configuré sur cette instance"
     groups:
       advanced: "Avancé"
       twitter: "Twitter"
@@ -36,6 +37,7 @@ fr:
       home: "Accueil"
       twitter_stats: "Stats"
       twitter_trends: "Trends"
+      sidekiq: "Sidekiq"
     actions:
       refresh_tweets: "Rafraichir les tweets"
       see_tweets: "Voir les tweets >"

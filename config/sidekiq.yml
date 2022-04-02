@@ -1,0 +1,10 @@
+:max_retries: 25 # around 21 days
+:concurrency: 5
+development:
+  :concurrency: 5
+production:
+  :concurrency: 8
+:queues:
+  - critical
+  - default
+  - low
