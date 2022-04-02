@@ -9,8 +9,8 @@ class ActiveAdmin::Views::Pages::Page
     (1..2000).bound(params.dig(:config, :limit)&.to_i || 50)
   end
 
-  def selected_character_count
-    (1..100).bound(params.dig(:config, :character_count)&.to_i || 2)
+  def selected_min_character_count
+    (1..100).bound(params.dig(:config, :min_character_count)&.to_i || 2)
   end
 
   def selected_from
@@ -98,8 +98,8 @@ class ActiveAdmin::Views::Pages::Page
             when :limit
               f.input :limit, as: :number, required: false, in: 1..2000, input_html: { value: page.selected_limit }
 
-            when :character_count
-              f.input :character_count, as: :number, required: false, in: 1..100, input_html: { value: page.selected_character_count }
+            when :min_character_count
+              f.input :min_character_count, as: :number, required: false, in: 1..100, input_html: { value: page.selected_min_character_count }
 
             when :date_granularity
               date_granularities = [
