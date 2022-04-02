@@ -39,6 +39,10 @@ class TwitterService
     if json['errors']
       messages = json['errors'].map { |e| e['message'] }
       raise ZiiResearchThingies::Error, messages.join(', ')
+    elsif json['status'] == 429
+      puts 'Waiting a bit before resuming counting...'
+      sleep(1)
+      return internal_count_tweets(query, start_time, end_time, next_token: next_token)
     end
 
     count = json.dig('meta', 'total_tweet_count') || 0
@@ -69,11 +73,16 @@ class TwitterService
     if json['errors']
       messages = json['errors'].map { |e| e['message'] }
       raise ZiiResearchThingies::Error, messages.join(', ')
+    elsif json['status'] == 429
+      puts 'Waiting a bit before resuming fetching...'
+      sleep(1)
+      return internal_load_and_save_tweets(source, query, start_time, end_time, next_token: next_token)
     end
 
     users = (json.dig('includes', 'users') || []).map { |u| [u['id'], u['username']] }.to_h
     tweets = json['data'] || []
     puts "#{query}: #{tweets.count} elements"
+
     tweets.each do |tweet|
       TwitterTweet.create(
         twitter_search_source: source,

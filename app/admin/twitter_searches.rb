@@ -80,7 +80,7 @@ ActiveAdmin.register TwitterSearch do
     else
       f.inputs do
         count = f.object.errors.messages[:estimated_count].first.to_i
-        f.input :allow_update, as: :boolean, label: I18n.t('admin.actions.allow_search_update_with_estimated_count', count: count)
+        f.input :allow_update, as: :boolean, label: I18n.t('admin.actions.allow_search_update_with_estimated_count', count: number_with_delimiter(count, delimiter: ' '))
       end
       f.actions
     end
