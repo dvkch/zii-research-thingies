@@ -288,7 +288,7 @@ ActiveAdmin.setup do |config|
   #
   #   end
   config.namespace :admin do |admin|
-    admin.download_links = false
+    admin.download_links = true
   end
 
   # == Pagination
