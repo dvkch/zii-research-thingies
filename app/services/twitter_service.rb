@@ -22,7 +22,7 @@ class TwitterService
 
   protected
 
-  def internal_count_tweets(query, start_time, end_time, next_token: nil)
+  def internal_count_tweets(query, start_time, end_time, next_token: nil, debounce: nil)
     options = {
       granularity: 'day'
     }
@@ -40,9 +40,11 @@ class TwitterService
       messages = json['errors'].map { |e| e['message'] }
       raise ZiiResearchThingies::Error, messages.join(', ')
     elsif json['status'] == 429
-      puts 'Waiting a bit before resuming counting...'
-      sleep(1)
-      return internal_count_tweets(query, start_time, end_time, next_token: next_token)
+      debounce ||= 0
+      debounce += 1
+      puts "Waiting #{debounce}s before resuming counting..."
+      sleep(debounce)
+      return internal_count_tweets(query, start_time, end_time, next_token: next_token, debounce: debounce)
     end
 
     count = json.dig('meta', 'total_tweet_count') || 0
@@ -53,12 +55,12 @@ class TwitterService
     count
   end
 
-  def internal_load_and_save_tweets(source, query, start_time, end_time, next_token: nil)
+  def internal_load_and_save_tweets(source, query, start_time, end_time, next_token: nil, debounce: nil)
     options = {
       'tweet.fields': 'created_at,public_metrics,conversation_id',
       'user.fields': 'username',
       'expansions': 'author_id',
-      'max_results': 100
+      'max_results': 500
     }
     options[:next_token] = next_token if next_token
     options[:start_time] = start_time.iso8601 if start_time
@@ -74,9 +76,11 @@ class TwitterService
       messages = json['errors'].map { |e| e['message'] }
       raise ZiiResearchThingies::Error, messages.join(', ')
     elsif json['status'] == 429
-      puts 'Waiting a bit before resuming fetching...'
-      sleep(1)
-      return internal_load_and_save_tweets(source, query, start_time, end_time, next_token: next_token)
+      debounce ||= 0
+      debounce += 1
+      puts "Waiting #{debounce}s before resuming fetching..."
+      sleep(debounce)
+      return internal_load_and_save_tweets(source, query, start_time, end_time, next_token: next_token, debounce: debounce)
     end
 
     users = (json.dig('includes', 'users') || []).map { |u| [u['id'], u['username']] }.to_h
