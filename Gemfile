@@ -17,6 +17,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'bcrypt', '~> 3.1'
 gem 'devise', '~> 4.7'
+gem 'modularity', '~> 3.0'
 gem 'parallel', '~> 1.22.1'
 gem 'pg_search', '~> 2.3'
 gem 'rest-client', '~> 2.1'

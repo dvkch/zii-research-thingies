@@ -28,6 +28,8 @@ SQL
                   using: { tsearch: { prefix: true, any_word: true } },
                   order_within_rank: 'twitter_tweets.date DESC'
 
+  include RansackSearchScope[:content_includes, ->(value) { search(value) }]
+
   validates :date, presence: true
   validates :username, presence: true
   validates :content, presence: true

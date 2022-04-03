@@ -22,7 +22,7 @@ ActiveAdmin.register TwitterTweet do
 
   filter :twitter_search_source
   filter :username
-  filter :content
+  filter :content_includes, label: I18n.t('attributes.content'), as: :string
   filter :date
   filter :retweet_count
   filter :like_count
