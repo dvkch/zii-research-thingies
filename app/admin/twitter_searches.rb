@@ -66,7 +66,7 @@ ActiveAdmin.register TwitterSearch do
         remove_record: [I18n.t('common.actions.delete'), I18n.t('activerecord.models.twitter_search_source.one')].join(' '),
         allow_destroy: ->(_) { true }
       ) do |param|
-        param.input :query, as: :text, input_html: { maxlength: 1024 }, placeholder: I18n.t('attributes.query'), hint: '<a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list" target="_blank">Building a query</a>'.html_safe
+        param.input :query, as: :text, input_html: { maxlength: 1024, rows: 5 }, placeholder: I18n.t('attributes.query'), hint: '<a href="https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query#list" target="_blank">Building a query</a>'.html_safe
         param.input :start_time, as: :date_time_picker, hint: 'By default, a request will return Tweets from up to 30 days ago if you do not include this parameter.'
         param.input :end_time, as: :date_time_picker, hint: 'If used without start_time, Tweets from 30 days before end_time will be returned by default. If not specified, end_time will default to [now - 30 seconds].'
       end
