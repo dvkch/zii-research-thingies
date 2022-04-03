@@ -25,7 +25,7 @@ ActiveAdmin.register_page 'Twitter Stats' do
     end
     GraphHelper.smooth!(tweets, selected_smooth_extent)
     panel I18n.t('activerecord.models.twitter_tweet.other') do
-      line_chart tweets
+      line_chart tweets, height: '500px'
     end
 
     # Keywords
@@ -39,7 +39,7 @@ ActiveAdmin.register_page 'Twitter Stats' do
     end
     GraphHelper.smooth!(tweets, selected_smooth_extent)
     panel I18n.t('attributes.keywords') do
-      line_chart tweets
+      line_chart tweets, height: '500px'
     end
   end
 end
