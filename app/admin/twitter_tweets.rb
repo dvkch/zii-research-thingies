@@ -20,6 +20,7 @@ ActiveAdmin.register TwitterTweet do
 
   config.sort_order = "date_desc"
 
+  filter :twitter_search_source
   filter :username
   filter :content
   filter :twitter_id
