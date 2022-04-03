@@ -23,7 +23,7 @@ ActiveAdmin.register TwitterTweet do
   filter :twitter_search_source
   filter :username
   filter :content
-  filter :twitter_id
+  filter :date
   filter :retweet_count
   filter :like_count
   filter :reply_count
