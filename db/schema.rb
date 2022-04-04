@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_02_102216) do
+ActiveRecord::Schema.define(version: 2022_04_04_000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,9 @@ ActiveRecord::Schema.define(version: 2022_04_02_102216) do
     t.integer "quote_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index "to_tsvector('simple'::regconfig, immutable_unaccent(COALESCE(content, ''::text)))", name: "twitter_tweets_content_search", using: :gin
+    t.index ["date"], name: "index_twitter_tweets_on_date"
+    t.index ["twitter_id"], name: "index_twitter_tweets_on_twitter_id"
     t.index ["twitter_search_id"], name: "index_twitter_tweets_on_twitter_search_id"
     t.index ["twitter_search_source_id"], name: "index_twitter_tweets_on_twitter_search_source_id"
   end
